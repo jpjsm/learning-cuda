@@ -7,7 +7,7 @@ finds the smallest divisor of N (other than 1).
 
 - If it finds a divisor, it writes it to a single result location
 
-- But multiple threads may find divisors → you must use an atomic
+- But multiple threads may find divisors -> you must use an atomic
 
 - You must avoid race conditions
 
