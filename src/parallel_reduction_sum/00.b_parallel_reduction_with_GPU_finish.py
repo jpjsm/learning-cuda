@@ -70,10 +70,10 @@ d_input = cuda.to_device(h_input)
 d_partial = cuda.device_array(blocks_stage1, dtype=np.int64)
 d_result = cuda.device_array(1, dtype=np.int64)
 
-# Stage 1: big array → partial sums
+# Stage 1: big array -> partial sums
 reduce_stage1[blocks_stage1, threads_per_block](d_input, d_partial)
 
-# Stage 2: partial sums → single sum
+# Stage 2: partial sums -> single sum
 threads_stage2 = 1024  # enough to cover 512 partials
 reduce_stage2[1, threads_stage2](d_partial, d_result)
 
