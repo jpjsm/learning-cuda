@@ -23,13 +23,13 @@ As of today 2026-06-04, for most ML and AI workflows, in Python, it's better to 
 
 - Download CUDA 12.4.1 Toolkit from [cuda-toolkit-archive](<https://developer.nvidia.com/cuda-toolkit-archive>).
 - This installs NVCC and the CUDA runtime.
-  - During install, make sure "CUDA → Development → Compiler" is checked.
+  - During install, make sure "CUDA -> Development -> Compiler" is checked.
 - After install, verify: `nvcc --version`
 
 #### Visual Studio Build Tools (MSVC)
 
-Install [Visual Studio Build Tools](<https://visualstudio.microsoft.com/visual-cpp-build-tools/>) — you do not need the full VS IDE. 
-Select the "Desktop development with C++" workload. 
+Install [Visual Studio Build Tools](<https://visualstudio.microsoft.com/visual-cpp-build-tools/>) — you do not need the full VS IDE.
+Select the "Desktop development with C++" workload.
 
 NVCC on Windows requires MSVC as its host compiler.
 
@@ -87,8 +87,9 @@ Ansorge's headers live in their own subfolder, completely isolated from MSVC's s
 > **Warning**: Replace v12.x and 14.xx.xxxxx with your actual installed versions. Run dir "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA" and dir "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC" to find them.
 
 > **Warning**: If you have the full VS 2022 Community (not Build Tools), the path shifts from BuildTools to Community: `C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\`
-> 
+>
 > Two differences to note:
+>
 > - It installs to Program Files (64-bit), not Program Files (x86)
 > - The folder name is Community instead of BuildTools
 
