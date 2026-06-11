@@ -7,3 +7,4 @@ dependencies:
   - pip:
     - cupy-cuda12x
     - numba
+    - pycuda
