@@ -48,35 +48,34 @@ void reduce_single_kernel_warp(
     long long* numbers, 
     long long count)
 {
-    unsigned long long tid = (unsigned long long) threadIdx.x;
-    unsigned long long block = (unsigned long long) blockIdx.x;
-    unsigned long long block_size = (unsigned long long) blockDim.x;
-    
-    unsigned int lane = (unsigned int)(threadIdx.x % 32); // lane index within warp
-    
-    long long sum = 0;
+    __shared__ unsigned long long s_sums[32];
 
     int round = 0;
-    long long stride = intPow(32, round);
-    long long index = (block * block_size + tid) * stride;
+    long long stride = 1; // 32^0
+
+    unsigned long long tid = (unsigned long long) threadIdx.x;
+
+    long long index = (blockIdx.x * blockDim.x + tid) * stride;
     
     
     while (stride < count)
     {        
-        // Warp-level reduction using shuffle down
-        sum = numbers[index];
-        for (int offset = 16; offset > 0; offset /= 2) {
-            sum += __shfl_down_sync(0xffffffff, sum, offset);
+        s_sums[tid] = (index < count) ? numbers[index] : 0;
+        __syncthreads();
+        
+        for (int s = 16; s > 0; s >>= 1) {
+            if (tid < s) s_sums[tid] += s_sums[tid + s];
+            __syncthreads();
         }
         
-        if (lane == 0)
+        if (tid == 0)
         {
-            numbers[index] = sum;            
+            numbers[index] = s_sums[0];            
         }
                 
         round++;
         stride = intPow(32, round);
-        index = (block * block_size + tid) * stride;
+        index = (blockIdx.x * blockDim.x + tid) * stride;
     }
 
 }
