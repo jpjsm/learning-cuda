@@ -70,11 +70,11 @@ Ansorge's headers live in their own subfolder, completely isolated from MSVC's s
         "${workspaceFolder}/**",
         "${workspaceFolder}/ansorge-includes",
         "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.4/include",
-        "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include",
+        "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.44.35207/include",
         "C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/ucrt"
       ],
       "defines": ["_WIN64", "__CUDACC__"],
-      "compilerPath": "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe",
+      "compilerPath": "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe",
       "cStandard": "c17",
       "cppStandard": "c++17",
       "intelliSenseMode": "windows-msvc-x64"
